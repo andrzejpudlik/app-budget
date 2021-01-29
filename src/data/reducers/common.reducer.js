@@ -1,5 +1,4 @@
 import { 
-    ALL_CATEGORIES_GET,
     ALL_CATEGORIES_GET_REQUEST,
     ALL_CATEGORIES_GET_SUCCESS,
     ALL_CATEGORIES_GET_FAILURE,
@@ -7,11 +6,11 @@ import {
   } from 'data/constants';
   
   const initialState = {
-    loadingState: {},
+    loadingState: null,
     allCategories: [],
   }
   
-  function budget(state = initialState, action) {
+  function common(state = initialState, action) {
     const newLoadingState = { ...state.loadingState };
   
     switch(action.type) {
@@ -47,4 +46,4 @@ import {
     }
   }
   
-  export default budget;
+export default common;
