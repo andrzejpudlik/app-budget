@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { fetchBudget, fetchBudgetedCategories } from 'data/actions/budget.actions';
 import { fetchAllCategories } from 'data/actions/common.actions';
+import BudgetCategoryList from 'pages/Budget/components/BudgetCategoryList';
 
 import { Grid } from './Budget.css';
 import { LoadingIndicator } from 'components';
@@ -21,12 +22,13 @@ function Budget({
     () => !!commonState && Object.keys(commonState).length === 0 && !!budgetState && Object.keys(budgetState).length === 0,
     [commonState, budgetState]
   );
-  console.log(isLoaded);
 
   return (
     <Grid>
       <section>
-        {isLoaded ? 'Category list' : (
+        {isLoaded ? (
+          <BudgetCategoryList></BudgetCategoryList>
+        ) : (
           <LoadingIndicator></LoadingIndicator>
         )}
       </section>

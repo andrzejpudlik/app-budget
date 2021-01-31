@@ -3,7 +3,6 @@ import { ThemeProvider } from 'styled-components';
 import { Button, LoadingIndicator, Navigation, Wrapper } from 'components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
 import theme from 'utils/theme';
 import Budget from 'pages/Budget';
 
