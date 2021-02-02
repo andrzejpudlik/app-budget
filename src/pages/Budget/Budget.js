@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchBudget, fetchBudgetedCategories } from 'data/actions/budget.actions';
 import { fetchAllCategories } from 'data/actions/common.actions';
 import BudgetCategoryList from 'pages/Budget/components/BudgetCategoryList';
+import BudgetTransactionList from 'pages/Budget/components/BudgetTransactionList';
 
 import { Grid } from './Budget.css';
 import { LoadingIndicator } from 'components';
@@ -27,14 +28,16 @@ function Budget({
     <Grid>
       <section>
         {isLoaded ? (
-          <BudgetCategoryList></BudgetCategoryList>
+          <BudgetCategoryList />
         ) : (
-          <LoadingIndicator></LoadingIndicator>
+          <LoadingIndicator />
         )}
       </section>
       <section>
-        {isLoaded ? 'Transaction list' : (
-          <LoadingIndicator></LoadingIndicator>
+        {isLoaded ? (
+          <BudgetTransactionList />
+        ) : (
+          <LoadingIndicator />
         )}
       </section>
     </Grid>

@@ -6,12 +6,14 @@ import {
   BUDGETED_CATEGORIES_GET_SUCCESS,
   BUDGETED_CATEGORIES_GET_FAILURE,
   LOADING_STATES,
+  SET_SELECTED_PARENT_CATEGORY_ID,
 } from 'data/constants';
 
 const initialState = {
   loadingState: null,
   budget: {},
   budgetedCategories: [],
+  selectedParentCategoryId: undefined,
 }
 
 function budget(state = initialState, action) {
@@ -45,32 +47,38 @@ function budget(state = initialState, action) {
         loadingState: newLoadingState,
       }
 
-      case BUDGETED_CATEGORIES_GET_REQUEST:
-        return {
-          ...state,
-          loadingState: {
-            ...state.loadingState,
-            [action.type]: LOADING_STATES.LOADING,
-          }
+    case BUDGETED_CATEGORIES_GET_REQUEST:
+      return {
+        ...state,
+        loadingState: {
+          ...state.loadingState,
+          [action.type]: LOADING_STATES.LOADING,
         }
+      }
   
-      case BUDGETED_CATEGORIES_GET_SUCCESS:
-        delete newLoadingState.BUDGETED_CATEGORIES_GET_REQUEST;
-  
-        return {
-          ...state,
-          budgetedCategories: action.payload,
-          loadingState: newLoadingState,
-        }
+    case BUDGETED_CATEGORIES_GET_SUCCESS:
+      delete newLoadingState.BUDGETED_CATEGORIES_GET_REQUEST;
+
+      return {
+        ...state,
+        budgetedCategories: action.payload,
+        loadingState: newLoadingState,
+      }
       
-      case BUDGETED_CATEGORIES_GET_FAILURE:
-        delete newLoadingState.BUDGETED_CATEGORIES_GET_REQUEST;
-  
-        return {
-          ...state,
-          budgetedCategories: [],
-          loadingState: newLoadingState,
-        }
+    case BUDGETED_CATEGORIES_GET_FAILURE:
+      delete newLoadingState.BUDGETED_CATEGORIES_GET_REQUEST;
+
+      return {
+        ...state,
+        budgetedCategories: [],
+        loadingState: newLoadingState,
+      }
+
+    case SET_SELECTED_PARENT_CATEGORY_ID:
+      return {
+        ...state,
+        selectedParentCategoryId: action.payload
+      }
 
     default:
       return state;
