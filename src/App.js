@@ -3,14 +3,16 @@ import { ThemeProvider } from 'styled-components';
 import { Button, LoadingIndicator, Navigation, Wrapper } from 'components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import theme from 'utils/theme';
 import Budget from 'pages/Budget';
 
 import { GlobalStyles }  from './index.css';
 
+toast.configure();
+
 function App({ budget, fetchBudget, fetchBudgetedCategories }) {
-
-
 
   const { i18n } = useTranslation();
 

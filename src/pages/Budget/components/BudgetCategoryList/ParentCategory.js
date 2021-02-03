@@ -18,11 +18,9 @@ function ParentCategory({ name, onClick, categories, transactions, amount }) {
       .filter(transaction => {
         return categories.find(category => category.categoryId === transaction.categoryId);
       });
-      console.log(parentCategoryTransactions);
     const spentOnParentCategory = parentCategoryTransactions
       .reduce((acc, transaction) => acc + transaction.amount, 0);  
-
-    console.log(spentOnParentCategory);  
+  
     const totalLeft = budgeted ? budgeted - spentOnParentCategory : null;
 
     return totalLeft;

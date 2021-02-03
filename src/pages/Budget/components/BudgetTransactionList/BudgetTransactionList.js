@@ -4,7 +4,6 @@ import { groupBy } from 'lodash';
 
 import { formatCurrency, formatDate } from 'utils';
 import { List, ListItem } from './BudgetTransactionList.css';
-import { selectParentCategory } from 'data/actions/budget.actions';
 
 function BudgetTransactionList({ 
   transactions, allCategories, budgetedCategories, selectedParentCategoryId 
@@ -52,10 +51,10 @@ function BudgetTransactionList({
   return (
     <List>
       {Object.entries(groupedTransactions).map(([key, transactions]) => (
-        <li> 
+        <li key={key}> 
           <ul>
             {transactions.map(transaction => (
-              <ListItem>
+              <ListItem key={transaction.id}>
                 <div>{transaction.description}</div>
                 <div>{formatCurrency(transaction.amount)}</div>
                 <div>{formatDate(transaction.date)}</div>
